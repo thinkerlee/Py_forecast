@@ -1,5 +1,13 @@
 # -*- coding:utf-8 -*-
 
+"""
+NAME: 简单的天气预报软件
+AUTHOR：Thinkerleo
+VERSION：V0.1
+DATE: 2016.07.22
+"""
+
+
 import urllib.parse,json
 import urllib.request
 

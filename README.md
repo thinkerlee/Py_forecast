@@ -1,1 +1,1 @@
-A wheather forecast
+一个简单的天气预报软件，目前仅支持中国城市
