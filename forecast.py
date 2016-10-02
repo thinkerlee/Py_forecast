@@ -10,18 +10,25 @@ DATE: 2016.07.22
 
 import urllib.parse,json
 import urllib.request
+import logging
+import os
 
 city = input("输入城市中文名：")
 citycode = urllib.request.quote(city.encode('gb2312'))
 
-
-
-url = "http://php.weather.sina.com.cn/xml.php?city=" + citycode + "&password=DJOYnieT8234jlsK&day=0"
-req = urllib.request.Request(url)
-response = urllib.request.urlopen(req)
-str = response.read().decode('utf-8')
-
-city = str.split('<city>',1)[1].split('</city>',1)[0]
+try:
+	url = "http://php.weather.sina.com.cn/xml.php?city=" + citycode + "&password=DJOYnieT8234jlsK&day=0"
+	req = urllib.request.Request(url)
+	response = urllib.request.urlopen(req)
+	str = response.read().decode('utf-8')
+except  Exception:
+	print('网络错误!')
+	os._exit(1)
+try:
+	city = str.split('<city>',1)[1].split('</city>',1)[0]
+except IndexError :
+	print('请输入正确的城市名称！')
+	os._exit(1)
 
 status1_day = str.split('<status1>',1)[1].split('</status1>',1)[0]
 status2_night = str.split('<status2>',1)[1].split('</status2>',1)[0]
